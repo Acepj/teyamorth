@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Photo Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+     <audio id="bg-music" autoplay loop>
+        <source src="music/14 - Silent Sanctuary (Violin Cover).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    
+<button id="music-btn">🔊 Play Music</button>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="#" data-category="all">Home</a></li>
+        <li><a href="#" data-category="child">Child Photos</a></li>
+        <li><a href="#" data-category="together">Together</a></li>
+        <li><a href="#" data-category="all">All Photos</a></li>
+        
+
+      </ul>
+    </nav>
+
+    <div class="filters">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="my">Jaypee Photos</button>
+      <button data-filter="your">Teya Photos</button>
+      <button data-filter="my-child">Jaypee Child Photos</button>
+      <button data-filter="your-child">Teya Child Photos</button>
+      <button data-filter="together">Together Photos</button>
+      <button data-filter="videos">All Videos</button>
+
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery">
+      <div class="image-wrapper" data-category="child">
+        <img src="images/Amorth photo/me4.jpg" alt="" />
+        <span>My Photo</span>
+      </div>
+
+      <div class="image-wrapper" data-category="together">
+        <img src="images/together photos/aa.jpg" alt="" />
+        <span>Together Photo</span>
+      </div>
+
+      <div class="image-wrapper" data-category="child">
+        <img src="images/Luna photos/luna31.jpg" alt="" />
+        <span>Lunatey Photo</span>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <span class="close">&times;</span>
+      <img id="lightbox-img" />
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <ul>
+        <li><a href="index.html">← Home</a></li>
+        <li><a href="#" class="active">Gallery</a></li>
+      </ul>
+    </nav>
+
+    <!-- Gallery Container -->
+    <div class="gallery" id="gallery">
+      <!-- Images will be dynamically added here via JavaScript -->
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+      <span class="close">&times;</span>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
