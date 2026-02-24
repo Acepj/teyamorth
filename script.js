@@ -284,25 +284,8 @@ const photos = [
   { src: 'images/together photos/z.jpg', category: 'together' },
   { src: 'images/together photos/z.jpg', category: 'together' },
 
-  //All videos together
-{ src: "video/vid1.MOV", category: "together", type: "video" },
-{ src: "video/vid2.mp4", category: "together", type: "video" },
-{ src: "video/vid3.MOV", category: "together", type: "video" },
-{ src: "video/vid4.MOV", category: "together", type: "video" },
-{ src: "video/vid5.MOV", category: "together", type: "video" },
-{ src: "video/lunamorth1.mp4", category: "together", type: "video" },
-{ src: "video/lunamorth2.mp4", category: "together", type: "video" },
-{ src: "video/vid6.mp4", category: "together", type: "video" },
-{ src: "video/vid7.mp4", category: "together", type: "video" },
-{ src: "video/vid8.mp4", category: "together", type: "video" },
-{ src: "video/vid9.mp4", category: "together", type: "video" },
-{ src: "video/vid10.mp4", category: "together", type: "video" },
-{ src: "video/vid11.mp4", category: "together", type: "video" },
-{ src: "video/vid12.mp4", category: "together", type: "video" },
-
   
 ];
-
 
 
 
@@ -321,11 +304,7 @@ function renderGallery(category = "all") {
 
   if (category === "all") {
     filteredPhotos = photos;
-  } 
-  else if (category === "videos") {
-    filteredPhotos = photos.filter(photo => photo.type === "video");
-  } 
-  else {
+  } else {
     filteredPhotos = photos.filter(photo => photo.category === category);
   }
 
@@ -333,59 +312,18 @@ function renderGallery(category = "all") {
     const wrapper = document.createElement("div");
     wrapper.className = "image-wrapper";
 
-    // VIDEO
-    // VIDEO
-if (photo.type === "video") {
-  const video = document.createElement("video");
-  video.src = photo.src;
-  video.controls = false; // hide controls
-  video.classList.add("gallery-video");
+    const img = document.createElement("img");
+    img.src = photo.src;
+    img.alt = "Family Photo";
 
-  // Mobile fullscreen behavior
-  video.setAttribute("playsinline", "");
-  video.setAttribute("webkit-playsinline", "");
+    img.addEventListener("click", () => {
+      openLightbox(img.src);
+    });
 
-  wrapper.appendChild(video);
-
-  // ⭐ Click video → auto fullscreen + play
-  video.addEventListener("click", async () => {
-    try {
-      if (video.requestFullscreen) {
-        await video.requestFullscreen();
-      } 
-      else if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
-      }
-
-      if (screen.orientation && screen.orientation.lock) {
-        await screen.orientation.lock("landscape");
-      }
-
-      video.play();
-    } catch (err) {
-      console.log(err);
-    }
-  });
-}
-
-
-
-  else {
-      const img = document.createElement("img");
-      img.src = photo.src;
-      img.alt = "Family Photo";
-
-      img.addEventListener("click", () => {
-        openLightbox(img.src);
-      });
-
-      wrapper.appendChild(img);
-    }
-
+    wrapper.appendChild(img);
     gallery.appendChild(wrapper);
   });
 }
-   
 
 
 
@@ -397,6 +335,13 @@ filterButtons.forEach((button) => {
     button.classList.add("active");
 
     const category = button.dataset.filter;
+
+    // ⭐ If Videos clicked → go to Canva
+    if (category === "videos") {
+      window.open("https://lopezjohn.my.canva.site/lunamorth", "_blank");
+      return;
+    }
+
     renderGallery(category);
   });
 });
